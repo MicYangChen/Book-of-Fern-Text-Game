@@ -1,6 +1,14 @@
 # Book-of-Fern-Text-Game-
 Book of Fern (Text Game) is a text game made during the O1-programming course at Aalto University.
 
+In order to make the game work, follow these steps:
+- Download the Book of Fern folder.
+- Add both Book of Fern (Text Game) and O1Library to whatever IDE you are using that supports Scala 3.
+- Import "O1Library.iml" as module from O1Library folder.
+- Import "Book of Fern.iml" as module from Book of Fern (Text Game) folder.
+- Open Book of Fern (Text Game) folder -> o1.adventure -> ui -> AdventureGUI, where you should see the code line 33 that has a play button to start the game.
+- Have fun enjoying the game!
+
 The game is meant to be played on AdventureGUI!
 
 
