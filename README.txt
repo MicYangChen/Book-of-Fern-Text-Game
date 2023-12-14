@@ -29,6 +29,8 @@ Guidebook / Manual:
 
 - You explore Ramia Woods and level/gear your character up. Elva has a task for you (not mandatory) (Makes it hell of a lot easier though)
 
+- TIP: Use Magic (MP) sparingly.
+
 - Once you are level 3 or above, you can enter the Clifflands.
 
 - In the Clifflands, you have a quest from gold fairy (not mandatory)
@@ -57,8 +59,9 @@ x = ""
 * means can be used in battle
 ' means does not use a turn
 
--* attack or a (attacks an enemy while in battle state)
 -* battle x or b x (goes into battle state against the enemy x)
+-* attack or a (attacks an enemy while in battle state)
+-* magic or m (attacks an enemy with magic while in battle state). Consumes 4 MP
 - drop x (drops the item x)
 - examine x (examines the enemy x)
 - get x (takes the item x from the area)

@@ -14,6 +14,8 @@ class Action(input: String):
   def execute(actor: Player) = this.verb match
     case "attack"    => Some(actor.attack())
     case "a"         => Some(actor.attack())
+    case "magic"     => Some(actor.magic())
+    case "m"         => Some(actor.magic())
     case "battle"    => Some(actor.battle(this.modifiers))
     case "b"         => Some(actor.battle(this.modifiers))
     case "drop"      => Some(actor.drop(this.modifiers))

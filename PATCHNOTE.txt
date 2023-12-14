@@ -10,4 +10,14 @@ Version 1.01
 The game is continued by Michael Chen.
 
 - Shortcuts for battle -> b, status -> s, go -> g
-- Updated Fernflower Village soundtrack
+- Updated Fernflower Village soundtrack.
+
+-------------------------------------------------------------------
+
+Version 1.02
+
+- Added MP to the Player.
+- Player can now use command 'magic' or 'm'
+- Magic consumes 4 MP.
+- Magic power is scaled by attack power. 1 Attack power is worth 2 magic power.
+- Magic is a situational use, since the player only has little amount of MP. Magic makes the game beatable without trial and error.

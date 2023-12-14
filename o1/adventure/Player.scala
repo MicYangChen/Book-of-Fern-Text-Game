@@ -255,7 +255,12 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
   // Player's HP:
   private var maxHP = 100
   private var currentHP = 100
+  private var maxMP = 10
+  private var currentMP = 10
   private def playerHP = min(currentHP, maxHP)
+  private def playerMP = min(currentMP, maxMP)
+  private var playerLowestMATT = playerLowestAtt * 2
+  private var playerHighestMATT = playerHighestAtt * 2
   // Player's experience point system:
   var level = 1 // also used in adventure.scala, which is why it's not a private var.
   private var exp = 0
@@ -271,7 +276,9 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
       this.level = 2
       this.previousLvL = 1
       this.maxHP += 8
+      this.maxMP += 4
       this.currentHP = this.maxHP
+      this.currentMP = this.maxMP
       this.playerLowestAtt += 3
       this.playerHighestAtt += 3
     // level 3
@@ -279,7 +286,9 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
       this.level = 3
       this.previousLvL = 2
       this.maxHP += 10
+      this.maxMP += 4
       this.currentHP = this.maxHP
+      this.currentMP = this.maxMP
       this.playerLowestAtt += 4
       this.playerHighestAtt += 4
     // level 4
@@ -287,7 +296,9 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
       this.level = 4
       this.previousLvL = 3
       this.maxHP += 12
+      this.maxMP += 5
       this.currentHP = this.maxHP
+      this.currentMP = this.maxMP
       this.playerLowestAtt += 5
       this.playerHighestAtt += 5
     // level 5
@@ -295,7 +306,9 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
       this.level = 5
       this.previousLvL = 4
       this.maxHP += 14
+      this.maxMP += 5
       this.currentHP = this.maxHP
+      this.currentMP = this.maxMP
       this.playerLowestAtt += 6
       this.playerHighestAtt += 6
     // level 6
@@ -303,7 +316,9 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
       this.level = 6
       this.previousLvL = 5
       this.maxHP += 16
+      this.maxMP += 6
       this.currentHP = this.maxHP
+      this.currentMP = this.maxMP
       this.playerLowestAtt += 7
       this.playerHighestAtt += 7
     // level 7
@@ -311,7 +326,9 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
       this.level = 7
       this.previousLvL = 6
       this.maxHP += 18
+      this.maxMP += 6
       this.currentHP = this.maxHP
+      this.currentMP = this.maxMP
       this.playerLowestAtt += 8
       this.playerHighestAtt += 8
     // level 8
@@ -319,7 +336,9 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
       this.level = 8
       this.previousLvL = 7
       this.maxHP += 20
+      this.maxMP += 7
       this.currentHP = this.maxHP
+      this.currentMP = this.maxMP
       this.playerLowestAtt += 9
       this.playerHighestAtt += 9
     // level 9
@@ -327,7 +346,9 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
       this.level = 9
       this.previousLvL = 8
       this.maxHP += 25
+      this.maxMP += 7
       this.currentHP = this.maxHP
+      this.currentMP = this.maxMP
       this.playerLowestAtt += 10
       this.playerHighestAtt += 10
     // final level: level 10
@@ -335,7 +356,9 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
       this.level = 10
       this.previousLvL = 9
       this.maxHP += 30
+      this.maxMP += 8
       this.currentHP = this.maxHP
+      this.currentMP = this.maxMP
       this.playerLowestAtt += 15
       this.playerHighestAtt += 15
 
@@ -357,7 +380,9 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
   def playerStatus() =
     s"Player:" +
     s"\n\nPlayer's attack damage: $playerLowestAtt - $playerHighestAtt." +
+    s"\nPlayer's magic damage: $playerLowestMATT - $playerHighestMATT." +
     s"\nPlayer's HP: $currentHP/$maxHP" +
+      s"\nPlayer's MP: $currentMP/$maxMP" +
     (if this.level == 10 then s"\nPlayer's LVL: $level (MAX)" else s"\nPlayer's LVL: $level") +
     (if this.exp == 1000 then s"\nPlayer's XP: ${min(this.exp, 1000)} (MAX)" else s"\nPlayer's XP: ${min(this.exp, 1000)}") +
     s"\n\n${inventory()}"
@@ -447,6 +472,47 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
       s"You have to battle first."
 
 
+  def magic(): String =
+    if canAttack == 1 && currentMP >= 4 then
+      val playerAtt = Random.between(playerLowestMATT, playerHighestMATT)
+      if this.currentLocation.fullDescription.contains(enemyInSight) then
+        val enemyList = this.currentLocation.readEnemy(enemyInSight)
+        for enemies <- enemyList do
+          this.enemyStatus.put(enemies.enemy, enemies)
+        canGo = 1
+        val enemyAtt = Random.between(enemyStatus(enemyInSight).lowestDamage, enemyStatus(enemyInSight).highestDamage)
+        enemyStatus(enemyInSight).injure(playerAtt)
+        currentMP -= 4
+          if enemyStatus(enemyInSight).currentHealth <= 0 then
+            this.currentLocation.killMonster(enemyInSight)
+            this.currentLocation.addItem(enemyStatus(enemyInSight).item)
+            canGo = 0
+            canAttack = 0
+            this.exp += enemyStatus(enemyInSight).xp
+            var levelBefore = this.level
+            levelUp()
+            if levelBefore != this.level then
+              return s"You leveled up!" +
+                s"\n\n$enemyInSight is dead. " +
+                s"\n\nYou earned: ${enemyStatus(enemyInSight).xp} xp." +
+                s"\n\n$enemyInSight dropped: ${enemyStatus(enemyInSight).item}"
+            else
+              return s"$enemyInSight is dead. " +
+                s"\n\nYou earned: ${enemyStatus(enemyInSight).xp} xp." +
+                s"\n\n$enemyInSight dropped: ${enemyStatus(enemyInSight).item}"
+        currentHP = max(0, playerHP - enemyAtt)
+        s"You attack the $enemyInSight and dealt $playerAtt damage." +
+        s"\nUsing magic exhausts you and your current MP drops by 4" +
+        s"\n\nThe $enemyInSight attacks you and deals ${enemyAtt} damage." +
+        s"\n\n${enemyStatus(enemyInSight).details}" +
+        s"\n\n${playerStatus()}"
+      else
+        enemyInSight = ""
+        s"Enemy does not exist or is dead."
+    else if canAttack == 1 then
+      s"You don't have enough MP to use magic."
+    else
+      s"You have to battle first."
 
 /** Music is in AdventureGUI.scala, lore in Player.scala, WelcomeMessage etc. in Adventure.scala. */
 
@@ -481,9 +547,10 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
   // Command "help2":
   val help3 =
     "Type help for general knowledge, help1 for commands, help2 for more commands." +
-    "\n\nattack or \"a\" (attacks an enemy while in battle state)" +
     "\n\nbattle x (goes into battle state against the enemy x)" +
-    "\n(Most of the overworld commands do not work while in battle!)" +
+    "\n\nattack or \"a\" (attacks an enemy while in battle state)" +
+    "\n\nmagic or \"m\" (attacks an enemy with magic while in battle state). Consumes 4 MP" +
+    "\n\n(Most of the overworld commands do not work while in battle!)" +
     "\n\ninventory (displays player's inventory) (Does not waste a turn)" +
     "\n\nquit (quits the game)" +
     "\n\nrest or \"r\" (rests for HP recovery. Recovers Player's lowest Attack a mount of HP for a given turn) (Recommended in the beginning!)" +

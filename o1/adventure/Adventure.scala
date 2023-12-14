@@ -10,7 +10,7 @@ import o1.*
 class Adventure:
 
   /** the name of the game */
-  val title = "Book of Fern (Version 1.01)"
+  val title = "Book of Fern (Version 1.02)"
 
   //Areas in the game
   private val fernflower       = Area("Fernflower Village", "- Fernflower Village - A calm village, that was the former hero's hometown.")
