@@ -563,7 +563,7 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
 
 
 /** MAP */
-  val worldMap = Pic("assets/images/Book of Fern.jpg")
+  val worldMap = Pic("Book of Fern.jpg")
 
 /** Lore for each zone: */
   def fernLore =

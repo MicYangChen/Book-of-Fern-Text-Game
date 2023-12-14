@@ -190,45 +190,42 @@ object AdventureGUI extends SimpleSwingApplication:
 
   /** Music for each zone: */
   val fern =
-    Sound("assets/bgm/Fern.wav",100)
+    Sound("o1/adventure/ui/Fern.wav",100)
 
   val ramia =
-    Sound("assets/bgm/ramia.wav",100)
+    Sound("o1/adventure/ui/ramia.wav",100)
 
   val passage =
-    Sound("assets/bgm/passage.wav",100)
+    Sound("o1/adventure/ui/passage.wav",100)
 
   val clifflands =
-    Sound("assets/bgm/clifflands.wav",100)
+    Sound("o1/adventure/ui/clifflands.wav",100)
 
   val snowhold =
-    Sound("assets/bgm/snowhold.wav")
+    Sound("o1/adventure/ui/snowhold.wav")
 
   val peak =
-    Sound("assets/bgm/Peak.wav")
+    Sound("o1/adventure/ui/Peak.wav")
 
   val dawnholdStart =
-    Sound("assets/bgm/dawnhold entrance.wav")
+    Sound("o1/adventure/ui/dawnhold entrance.wav")
 
   val dawnholdBossRoom =
-    Sound("assets/bgm/dawnhold bossroom.wav",100)
+    Sound("o1/adventure/ui/dawnhold bossroom.wav",100)
 
   val dawnhold =
-    Sound("assets/bgm/Dawnhold Mines.wav")
+    Sound("o1/adventure/ui/Dawnhold Mines.wav")
 
   val baldur =
-    Sound("assets/bgm/baldur theme.wav")
+    Sound("o1/adventure/ui/baldur theme.wav")
     
   val win =
-    Sound("assets/bgm/win.wav")
+    Sound("o1/adventure/ui/win.wav")
 
   val battle1 =
-    Sound("assets/bgm/battle2.wav")
+    Sound("o1/adventure/ui/battle.wav")
 
-  val battle2 =
-    Sound("assets/bgm/battle.wav")
-
-  // Joskus ei toimi :( val shuffleBattle = Vector(Sound("o1/adventure/ui/battle2.wav"), Sound("o1/adventure/ui/battle.wav"))
+  // Joskus ei toimi :( val shuffleBattle = Vector(Sound("o1/adventure/ui/battle.wav"), Sound("o1/adventure/ui/battle.wav"))
 
 
   // Enable this code to work even under the -language:strictEquality compiler option:
