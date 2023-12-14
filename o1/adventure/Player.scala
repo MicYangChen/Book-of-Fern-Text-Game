@@ -10,11 +10,8 @@ import o1.*
 
 /** A `Player` object represents a player character controlled by the real-life user
   * of the program.
-  *
   * A player object’s state is mutable: the player’s location and possessions can change,
-  * for instance.
-  *
-  * @param startingArea  the player’s initial location */
+  * for instance.*/
 class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amulet", "This amulet has been passed down for generations."), 0):
 
   private var currentLocation = startingArea        // gatherer: changes in relation to the previous location
@@ -31,8 +28,7 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
 
 
   /** Attempts to move the player in the given direction. This is successful if there
-    * is an exit from the player’s current location towards the direction name. Returns
-    * a description of the result: "You go DIRECTION." or "You can't go DIRECTION." */
+    * is an exit from the player’s current location towards the direction name.*/
   def go(direction: String) =
     if canGo == 0 then
       val destination = this.location.neighbor(direction)
@@ -53,8 +49,7 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
   def xpCheck() = xpInfo
 
 
-  /** Signals that the player wants to quit the game. Returns a description of what happened within
-    * the game as a result (which is the empty string, in this case). */
+  /** Signals that the player wants to quit the game.*/
   def quit() =
     this.quitCommandGiven = true
     ""
@@ -137,12 +132,12 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
       "You can't do that while in battle!"
 
 
-  def examine(itemName: String) =
+  def inspect(itemName: String) =
     if canGo == 0 then
       if this.itemsPickedUp.contains(itemName) then
-        s"You examine the $itemName.\n${itemsPickedUp(itemName).description}."
+        s"You inspect the $itemName.\n${itemsPickedUp(itemName).description}."
       else
-        "If you want to examine something, you need to pick it up first."
+        "If you want to inspect something, you need to pick it up first."
     else
       "You can't do that while in battle!"
 
@@ -345,16 +340,16 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
       this.playerHighestAtt += 15
 
 
-  def inspect(enemy: String) =
+  def examine(enemy: String) =
     if canGo == 0 then
       if this.currentLocation.fullDescription.contains(enemy) then
         val enemyList = this.currentLocation.readEnemy(enemy)
         for enemies <- enemyList do
           this.enemyStatus.put(enemies.enemy, enemies)
           enemyInSight = enemy
-        s"You inspect the enemy ${enemy}." +
+        s"You examine the enemy ${enemy}." +
         s"\n\n${enemyStatus(enemy).details}"
-      else s"There is no such enemy to inspect."
+      else s"There is no such enemy to examine."
     else
       "You can't do that while in battle!"
 
@@ -450,9 +445,6 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
         s"Enemy does not exist or is dead."
     else
       s"You have to battle first."
-
-
-
 
 
 
@@ -563,7 +555,7 @@ class Player(startingArea: Area) extends Enemy("", 100, 1, 5, Item("family amule
 
 
 /** MAP */
-  val worldMap = Pic("Book of Fern.jpg")
+  val worldMap = Pic("assets/Book of Fern.jpg")
 
 /** Lore for each zone: */
   def fernLore =

@@ -15,21 +15,8 @@ import scala.io.Source
 import java.awt.{Dimension, Insets, Point}
 import scala.language.adhocExtensions // enable extension of Swing classes
 
-////////////////// NOTE TO STUDENTS //////////////////////////
-// For the purposes of our course, it’s not necessary
-// that you understand or even look at the code in this file.
-//////////////////////////////////////////////////////////////
 
-/** The singleton object `AdventureGUI` represents a GUI-based version of the Adventure
-  * game application. The object serves as a possible entry point for the game app, and can
-  * be run to start up a user interface that operates in a separate window. The GUI reads
-  * its input from a text field and displays information about the game world in uneditable
-  * text areas.
-  *
-  * **NOTE TO STUDENTS: In this course, you don’t need to understand how this object works
-  * or can be used, apart from the fact that you can use this file to start the program.**
-  *
-  * @see [[AdventureTextUI]] */
+
 object AdventureGUI extends SimpleSwingApplication:
   UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName)
 
@@ -190,42 +177,40 @@ object AdventureGUI extends SimpleSwingApplication:
 
   /** Music for each zone: */
   val fern =
-    Sound("o1/adventure/ui/Fern.wav",100)
+    Sound("assets/Fernflower Village.wav")
 
   val ramia =
-    Sound("o1/adventure/ui/ramia.wav",100)
+    Sound("assets/ramia.wav",100)
 
   val passage =
-    Sound("o1/adventure/ui/passage.wav",100)
+    Sound("assets/passage.wav",100)
 
   val clifflands =
-    Sound("o1/adventure/ui/clifflands.wav",100)
+    Sound("assets/clifflands.wav",100)
 
   val snowhold =
-    Sound("o1/adventure/ui/snowhold.wav")
+    Sound("assets/snowhold.wav")
 
   val peak =
-    Sound("o1/adventure/ui/Peak.wav")
+    Sound("assets/Peak.wav")
 
   val dawnholdStart =
-    Sound("o1/adventure/ui/dawnhold entrance.wav")
+    Sound("assets/dawnhold entrance.wav")
 
   val dawnholdBossRoom =
-    Sound("o1/adventure/ui/dawnhold bossroom.wav",100)
+    Sound("assets/dawnhold bossroom.wav",100)
 
   val dawnhold =
-    Sound("o1/adventure/ui/Dawnhold Mines.wav")
+    Sound("assets/Dawnhold Mines.wav")
 
   val baldur =
-    Sound("o1/adventure/ui/baldur theme.wav")
+    Sound("assets/baldur theme.wav")
     
   val win =
-    Sound("o1/adventure/ui/win.wav")
+    Sound("assets/win.wav")
 
   val battle1 =
-    Sound("o1/adventure/ui/battle.wav")
-
-  // Joskus ei toimi :( val shuffleBattle = Vector(Sound("o1/adventure/ui/battle.wav"), Sound("o1/adventure/ui/battle.wav"))
+    Sound("assets/battle.wav")
 
 
   // Enable this code to work even under the -language:strictEquality compiler option:

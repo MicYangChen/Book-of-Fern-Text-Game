@@ -5,7 +5,7 @@ Scala swing 3.0.0
 Scala 3.3.0
 Scala parser combinators 2.1.1
 
-..and the following libraries without known licences
+...and the following libraries without known licences
 
 O1-Library (Juha Sorva, Aalto University)
 SMCL (Aleksi Lukkarinen, Aalto University)
@@ -58,21 +58,21 @@ x = ""
 ' means does not use a turn
 
 -* attack or a (attacks an enemy while in battle state)
--* battle x (goes into battle state against the enemy x)
+-* battle x or b x (goes into battle state against the enemy x)
 - drop x (drops the item x)
-- examine x (examine the item x in player's inventory)
+- examine x (examines the enemy x)
 - get x (takes the item x from the area)
-- go x (according to the "exits available", you can go to the location x)
+- go x or g x (according to the "exits available", you can go to the location x)
 -*' help (general information)
 -*' help1 (overworld commands)
 -*' help2 (more overworld commands & battle commands)
-- inspect x (inspects the enemy x)
+- inspect x (inspects the item x in player's inventory)
 -*' inventory (displays player's inventory)
 -' lore (different lore is displayed in different zones)
 -' map (displays the map of the world)
 -* quit (quits the game)
 -* rest or r (rests for HP recovery. Recovers Player's lowest Attack a mount of HP for a given turn)
--*' status (checks player's status such as leve, attack power and HP)
+-*' status or s (checks player's status such as leve, attack power and HP)
 - talk x (talk to the NPC x)
 - use x (use the item x)
 -*' xp (checks xp required to level up)

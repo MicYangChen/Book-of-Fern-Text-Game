@@ -5,15 +5,12 @@ import o1.*
 /** The class `Adventure` represents text adventure games. An adventure consists of a player and
   * a number of areas that make up the game world. It provides methods for playing the game one
   * turn at a time and for checking the state of the game.
-  *
-  * N.B. This version of the class has a lot of “hard-coded” information that pertains to a very
-  * specific adventure game that involves a small trip through a twisted forest. All newly created
-  * instances of class `Adventure` are identical to each other. To create other kinds of adventure
-  * games, you will need to modify or replace the source code of this class. */
+  */
+
 class Adventure:
 
   /** the name of the game */
-  val title = "Book of Fern"
+  val title = "Book of Fern (Version 1.01)"
 
   //Areas in the game
   private val fernflower       = Area("Fernflower Village", "- Fernflower Village - A calm village, that was the former hero's hometown.")

@@ -1,3 +1,13 @@
 Version 1.0
 
+- The original version of the project submitted to grading 200/200
 - The game is now build and playable.
+
+-------------------------------------------------------------------
+
+Version 1.01
+
+The game is continued by Michael Chen.
+
+- Shortcuts for battle -> b, status -> s, go -> g
+- Updated Fernflower Village soundtrack
